@@ -177,22 +177,32 @@ class Funciones():
         ct.select_by_visible_text(texto)
         return ct
 
-    def combo_texto(self, id, texto):
+    def combo_texto(self, id, texto, tiempo):
         ct = self.driver.find_element_by_id(id)
         actions = ActionChains(self.driver)
         actions.move_to_element(ct).perform()
         self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
-        time.sleep(2)
+        time.sleep(tiempo)
         ct = Select(self.driver.find_element_by_id(id))
         ct.select_by_visible_text(texto)
         return ct
 
-    def combo_index(self, id, index):
+    def combo_texto_xpath(self, xpath, texto, tiempo):
+        ct = self.driver.find_element_by_xpath(xpath)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(ct).perform()
+        self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
+        time.sleep(tiempo)
+        ct = Select(self.driver.find_element_by_xpath(xpath))
+        ct.select_by_visible_text(texto)
+        return ct
+
+    def combo_index(self, id, index, tiempo):
         t = self.driver.find_element_by_id(id)
         actions = ActionChains(self.driver)
         actions.move_to_element(t).perform()
         self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
-        time.sleep(3)
+        time.sleep(tiempo)
         ct = Select(self.driver.find_element_by_id(id))
         ct.select_by_index(index)
         time.sleep(3)

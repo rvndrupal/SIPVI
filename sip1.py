@@ -36,12 +36,12 @@ import string
 
 
 
-ren = 33
-excel="C://SISIA//Documentacion//respaldo_ok.xlsx"
-casos= 33
+ren = 4
+casos= 4
 #ruta="https://prod.senasica.gob.mx/sisia/login"
-
-ruta="http://10.16.3.36:8004/login"
+excel="C://SIPVI//Documentos//Datos.xlsx"
+ruta="http://10.16.3.29:8007/login"
+t_login=1
 
 #ruta="http://10.16.3.29:8004/login"
 #nueva con los id
@@ -63,27 +63,27 @@ class Sisia(unittest.TestCase):
         driver = cls.driver
         f = Funciones(driver)
         f.tiempo(2)
-        cls.driver.implicitly_wait(30)
+        cls.driver.implicitly_wait(15)
 
 
     # @unittest.skip("Para pruebas de datos")
     # Primero
-    def test01_datos(self):
-        self.driver.implicitly_wait(30)
+    def test01_rastros(self):
+        self.driver.implicitly_wait(15)
         driver = self.driver
         f = Funciones(driver)
         fe = Funexcel(driver)
-        f.tiempo(2)
+        f.tiempo(.3)
         driver.get(ruta)
 
         path = excel
-        hoja = "Hoja3"
+        hoja = "Rastros(TIF)"
         rows = fe.getRowCount(path, hoja)
-        for r in range(ren, rows + 1):
-            user = fe.readData(path, "Hoja3", r, 1)
-            passw = fe.readData(path, "Hoja3", r, 9)
-            user = fe.readData(path, "Hoja3", r, 1)
-            passw = fe.readData(path, "Hoja3", r, 9)
+        for r in range(ren, rows):
+            user = fe.readData(path, hoja, r, 1)
+            passw = fe.readData(path, hoja , r, 2)
+            '''
+          
             mision = fe.readData(path, "Hoja3", r, 10)
             vision = fe.readData(path, "Hoja3", r, 11)
             fecha = fe.readData(path, "Hoja3", r, 12)
@@ -110,13 +110,29 @@ class Sisia(unittest.TestCase):
             pdf1 = str(fe.readData(path, "Hoja3", r, 20))
             pdf2 = str(fe.readData(path, "Hoja3", r, 21))
             pdf3 = str(fe.readData(path, "Hoja3", r, 22))
-
+            '''
             # Login
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.texto_xpath("//input[contains(@id,'username')]", user , .1)
-            f.texto_xpath("//input[contains(@id,'password')]", passw , .1)
-            f.Click_xpath("//button[contains(@id,'login_iniciarBtn')]", .1)
+            self.driver.implicitly_wait(5)
+            f.tiempo(2)
+            f.texto_xpath("//input[contains(@id,'usuario')]", user , t_login)
+            f.texto_xpath("//input[contains(@id,'contrasenia')]", passw , t_login)
+            f.Click_xpath("//button[@type='submit']", t_login)
+
+            #Catalogo
+            f.Click_xpath("//a[@class='dropdown-toggle'][contains(.,'Catálogos')]", 1)
+            f.Click_xpath("//a[@href='/catalogos/cat_rastro']",1)
+
+            #click Nuevo
+            f.tiempo(6)
+            f.Click_xpath("//button[contains(.,'Nuevo')]",2)
+
+            #tipo de Registro TIF
+            f.combo_texto_xpath("//select[@formcontrolname='tipoRastro']"," Establecimiento TIF ", 2)
+            f.Click_xpath("//button[contains(.,'Siguiente')]", 1)
+            f.tiempo(4)
+
+
+            '''
             f.Click("sisiaMenu_menu_621")
             f.Click("sisiaMenu_subMenu_622")
 
@@ -253,231 +269,8 @@ class Sisia(unittest.TestCase):
             if (r == casos):
                 break
 
-
-
-
-
-
-    #ok listo
-    #@unittest.skip("Para instalaciones")
-    def test03_instalacion(self):
-        self.driver.implicitly_wait(30)
-        driver = self.driver
-        driver.get(ruta)
-        f = Funciones(driver)
-        fe = Funexcel(driver)
-        f.tiempo(5)
-        path = excel
-        hoja = "Hoja3"
-        rows = fe.getRowCount(path, hoja)
-        for r in range(ren, rows + 1):
-            user = fe.readData(path, "Hoja3", r, 1)
-            passw = fe.readData(path, "Hoja3", r, 9)
-            instalacion = str(fe.readData(path, "Hoja3", r, 30))
-            descripcion = str(fe.readData(path, "Hoja3", r, 31))
-            calle = str(fe.readData(path, "Hoja3", r, 32))
-            colonia = str(fe.readData(path, "Hoja3", r, 33))
-            cp = str(fe.readData(path, "Hoja3", r, 34))
-            estado = str(fe.readData(path, "Hoja3", r, 35))
-
-            # Login
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.texto("username", user)
-            f.texto("password", passw)
-            f.Click("login_iniciarBtn")
-            f.Click("sisiaMenu_menu_621")
-            f.Click("sisiaMenu_subMenu_622")
-
-            # instalacion
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.Click_oculto("tab_instalaciones")
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.combo_index("instalacionesTipoInstalacion", 1)
-            f.combo_index("instalacionesNombreResponsable", 1)
-            f.tiempo(1)
-            f.texto("instalacionesDescripcion", descripcion)
-            f.tiempo(1)
-            f.texto("instalacionesCalle", calle)
-            f.texto("instalacionesColonia", colonia)
-            f.texto("instalacionesCp", cp)
-            driver.implicitly_wait(8)
-            f.tiempo(2)
-            f.combo_index("instalacionesEstado", estado)
-            driver.implicitly_wait(8)
-            f.tiempo(2)
-            f.combo_index("instalacionesMunicipio", 3)
-            driver.implicitly_wait(8)
-            f.tiempo(2)
-            f.combo_index("instalacionesLocalidad", estado)
-            driver.implicitly_wait(8)
-            f.tiempo(6)
-            f.scrolling(100)
-            f.tiempo(2)
-            f.Click("instalacionesAgregar")
-            f.tiempo(2)
-            #falta id
-            f.Click("instalaciones_modalEnt")
-            f.scrolling(700)
-            f.tiempo(2)
-            f.Click("instalacionesGuardar")
-            self.driver.implicitly_wait(5)
-            f.tiempo(5)
-            f.Click("infUsuari_logout")
-            f.tiempo(1)
-            if (r == casos):
-                break
-
-
-    #ok listo
-    def test04_inventario(self):
-        self.driver.implicitly_wait(30)
-        driver = self.driver
-        driver.get(ruta)
-        f = Funciones(driver)
-        fe = Funexcel(driver)
-        f.tiempo(5)
-        path = excel
-        hoja = "Hoja3"
-        rows = fe.getRowCount(path, hoja)
-        for r in range(ren, rows + 1):
-            user = fe.readData(path, "Hoja3", r, 1)
-            passw = fe.readData(path, "Hoja3", r, 9)
-            ano = str(fe.readData(path, "Hoja3", r, 36))
-            ni = str(fe.readData(path, "Hoja3", r, 37))
-            ni = str(fe.readData(path, "Hoja3", r, 37))
-            tv = str(fe.readData(path, "Hoja3", r, 38))
-            marcam = str(fe.readData(path, "Hoja3", r, 39))
-            modelom = str(fe.readData(path, "Hoja3", r, 40))
-            placam = str(fe.readData(path, "Hoja3", r, 41))
-            ns = str(fe.readData(path, "Hoja3", r, 42))
-            cil = str(fe.readData(path, "Hoja3", r, 43))
-            vf = str(fe.readData(path, "Hoja3", r, 44))
-            nf = str(fe.readData(path, "Hoja3", r, 45))
-            kil = str(fe.readData(path, "Hoja3", r, 46))
-            po = str(fe.readData(path, "Hoja3", r, 47))
-
-            # Login
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.texto("username", user)
-            f.texto("password", passw)
-            f.Click("login_iniciarBtn")
-            f.Click("sisiaMenu_menu_621")
-            f.Click("sisiaMenu_subMenu_622")
-
-            #inventario
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.Click_oculto("tab_inventarioVehicular")
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.combo_texto("inventarioAnioRegistro", ano)
-            f.tiempo(2)
-            f.texto("inventarioNumInventario", ni)
-            f.combo_index("inventarioTipoVehiculo", tv)
-            f.texto("inventarioMarca", marcam)
-            f.texto("inventarioModelo", modelom)
-            f.texto("inventarioPlaca", placam)
-            f.scrolling(350)
-            f.texto("inventarioNumSerie", ns)
-            f.texto("inventarioNumCilindros", cil)
-            f.texto("inventarioValorFactura", vf)
-            f.texto("inventarioNumFactura", nf)
-            f.combo_index("inventarioCondicionVehiculo", tv)
-            f.combo_index("inventarioResguardante", 1)
-            f.texto("inventarioKilometraje", kil)
-            f.combo_index("inventarioProyectoOrigen", po)
-            f.Click("inventarioTipoRecurso")
-            #f.scrolling(550)
-            f.tiempo(2)
-            f.Click("inventarioAgregar")
-            #FAlTA ID
-            f.Click("inventario_modalEnt")
-            f.scrolling(200)
-            f.tiempo(1)
-            f.Click("inventarioGuardarRegistro")
-            self.driver.implicitly_wait(5)
-            f.tiempo(5)
-            f.Click("infUsuari_logout")
-            f.tiempo(1)
-            if (r == casos):
-                break
-
-
-
-    def test05_bien(self):
-        self.driver.implicitly_wait(30)
-        driver = self.driver
-        driver.get(ruta)
-        f = Funciones(driver)
-        fe = Funexcel(driver)
-        f.tiempo(5)
-        path = excel
-        hoja = "Hoja3"
-        rows = fe.getRowCount(path, hoja)
-        for r in range(ren, rows + 1):
-            user = fe.readData(path, "Hoja3", r, 1)
-            passw = fe.readData(path, "Hoja3", r, 9)
-            tv = str(fe.readData(path, "Hoja3", r, 38))
-            mision = fe.readData(path, "Hoja3", r, 10)
-            marcam = str(fe.readData(path, "Hoja3", r, 39))
-            nf = str(fe.readData(path, "Hoja3", r, 45))
-            po = str(fe.readData(path, "Hoja3", r, 47))
-            modelom = str(fe.readData(path, "Hoja3", r, 40))
-            ns = str(fe.readData(path, "Hoja3", r, 42))
-            vf = str(fe.readData(path, "Hoja3", r, 44))
-            fecha3 = datetime.now()
-            fecha4 = fecha3.strftime('%d/%m/%Y')
-
-            # Login
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.texto("username", user)
-            f.texto("password", passw)
-            f.Click("login_iniciarBtn")
-            f.Click("sisiaMenu_menu_621")
-            f.Click("sisiaMenu_subMenu_622")
-
-            #Click Bien y Servicio
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.Click_oculto("tab_bienServicio")
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.combo_index("bienServicio_anio", 1)
-
-            f.combo_index("bienServicio_tipoBn", tv)
-            f.tiempo(2)
-            f.combo_index("bienServicio_concepto", po)
-            f.texto("bienServicio_desc", mision)
-            f.texto("bienServicio_numInv", nf)
-            f.texto("bienServicio_marca", marcam)
-            f.texto("bienServicio_mod", modelom)
-            f.combo_index("bienServicio_estadoBn", tv)
-            f.texto("bienServicio_numSer", ns)
-            f.texto("bienServicio_numFact", vf)
-            f.texto("bienServicio_valFact", "30000")
-            f.combo_index("bienServicio_nomRes", 1)
-            f.combo_index("bienServicio_ubiBn", po)
-            f.combo_index("bienServicio_proOri", po)
-            f.texto("bienServicio_fechaAdq", fecha4)
-            f.Click("bienServicio_tipRec_2")
-            f.tiempo(2)
-            f.Click("bienServicio_agregarBtn")
-            f.tiempo(1)
-            f.Click("bienServicio_modalOK")
-            f.Click("bienServicio_saveBtn")
-            self.driver.implicitly_wait(5)
-            f.tiempo(5)
-            f.Click("infUsuari_logout")
-            f.tiempo(1)
-            if (r == casos):
-                break
-
-
+   
+            '''
 
 
 
@@ -487,7 +280,7 @@ class Sisia(unittest.TestCase):
     def tearDownClass(cls):
         cls.driver.close()
         cls.driver.quit()
-        print("Text Completado")
+        print("Terminan las Pruebas ok")
 
 
 
