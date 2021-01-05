@@ -42,6 +42,7 @@ casos= 4
 excel="C://SIPVI//Documentos//Datos.xlsx"
 ruta="http://10.16.3.29:8007/login"
 t_login=1
+tg=.2
 
 #ruta="http://10.16.3.29:8004/login"
 #nueva con los id
@@ -69,7 +70,7 @@ class Sisia(unittest.TestCase):
     # @unittest.skip("Para pruebas de datos")
     # Primero
     def test01_rastros(self):
-        self.driver.implicitly_wait(15)
+        self.driver.implicitly_wait(20)
         driver = self.driver
         f = Funciones(driver)
         fe = Funexcel(driver)
@@ -83,33 +84,10 @@ class Sisia(unittest.TestCase):
             user = fe.readData(path, hoja, r, 1)
             passw = fe.readData(path, hoja , r, 2)
             '''
-          
-            mision = fe.readData(path, "Hoja3", r, 10)
-            vision = fe.readData(path, "Hoja3", r, 11)
             fecha = fe.readData(path, "Hoja3", r, 12)
             #fecha2 = datetime.now() + timedelta(days=fecha)
             fecha2 = datetime.now()
-            fecha2 = fecha2.strftime('%d/%m/%Y')
-            fecha3 = datetime.now()
-            fecha4 = fecha3.strftime('%d/%m/%Y')
-            registro = str(fe.readData(path, "Hoja3", r, 13))
-            telefono = str(fe.readData(path, "Hoja3", r, 14))
-            sample_letters = 'ABCDFEGHIJKLOPQRTSRETUIO'
-            sample = 'XFTRGERDFRESCDFTYUIOPKASDR'
-            rt = random.choice(sample_letters)
-            rt2 = random.choice(sample)
-            raa = random.randint(1, 9)
-            ra1 = random.randint(1, 9)
-            rfc = str(fe.readData(path, "Hoja3", r, 15))
-            rfcc = rfc + str(ra1)+ rt + str(raa)
-            curpp = str("SENASICA/01-31/2019")
-            # curpp = curp + rt + str(r)
-            presidente = str(fe.readData(path, "Hoja3", r, 17))
-            secretario = str(fe.readData(path, "Hoja3", r, 18))
-            tesorero = str(fe.readData(path, "Hoja3", r, 19))
-            pdf1 = str(fe.readData(path, "Hoja3", r, 20))
-            pdf2 = str(fe.readData(path, "Hoja3", r, 21))
-            pdf3 = str(fe.readData(path, "Hoja3", r, 22))
+            fecha2 = fecha2.strftime('%d/%m/%Y')                    
             '''
             # Login
             self.driver.implicitly_wait(5)
@@ -120,159 +98,116 @@ class Sisia(unittest.TestCase):
 
             #Catalogo
             f.Click_xpath("//a[@class='dropdown-toggle'][contains(.,'Catálogos')]", 1)
-            f.Click_xpath("//a[@href='/catalogos/cat_rastro']",1)
+            f.Click_xpath("//a[@href='/catalogos/cat_rastro']", 1)
 
             #click Nuevo
-            f.tiempo(6)
-            f.Click_xpath("//button[contains(.,'Nuevo')]",2)
+            f.tiempo(20)
+            f.Click_xpath("//button[contains(.,'Nuevo')]",.5)
 
             #tipo de Registro TIF
-            f.combo_texto_xpath("//select[@formcontrolname='tipoRastro']"," Establecimiento TIF ", 2)
-            f.Click_xpath("//button[contains(.,'Siguiente')]", 1)
-            f.tiempo(4)
+            f.combo_texto_xpath("//select[@formcontrolname='tipoRastro']"," Establecimiento TIF ", .5)
+            f.Click_xpath("//button[contains(.,'Siguiente')]", .5)
 
 
-            '''
-            f.Click("sisiaMenu_menu_621")
-            f.Click("sisiaMenu_subMenu_622")
-
-
-            # DATOS IE
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.Click_oculto("tab_recursosHumanosMateriales")
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.texto("datosIE_mision", mision)
-            f.texto("datosIE_vision", vision)
-            f.texto("datosIE_fechaA", fecha2)
-            f.combo_texto("datosIE_anio",registro)
-            f.texto("datosIE_tel", telefono)
-            #cambios
-            f.texto("datosIE_rfc",rfcc)
-            f.texto("datosIE_clave", curpp)
-            f.texto("datosIE_presidente", presidente)
-            f.texto("datosIE_secretario", secretario)
-            f.texto("datosIE_tesorero", tesorero)
-            f.scrolling(150)
-            driver.implicitly_wait(2)
-            pdf = f.existe_try("datosIE_docActaConst")
-            print(pdf)
-            if (pdf == "Existe"):
-                f.upload("datosIE_docActaConst", pdf1)
-                f.upload("datosIE_docActaMesa", pdf2)
-                f.upload("datosIE_docOficio", pdf3)
-                f.tiempo(2)
-                f.Click("datosIE_buttonSave")
-                f.tiempo(28)
-                f.Click("datosIE_modalOk")
-                self.driver.implicitly_wait(5)
-                f.tiempo(5)
-                f.Click("infUsuari_logout")
-                f.tiempo(1)
-            print("Valor de R: " + str(r))
-            if(r == casos):
-                break
-
-            elif (pdf == "Falso"):
-                f.tiempo(1)
-                f.Click("datosIE_buttonSave")
-                f.tiempo(4)
-                f.Click("datosIE_modalOk")
-                self.driver.implicitly_wait(5)
-                f.tiempo(5)
-                f.Click("infUsuari_logout")
-                f.tiempo(1)
-            print("Valor de R: " + str(r))
-            if (r == casos):
-                break
-
-
-
-
-    #ok listo
-    #@unittest.skip("Para pruebas de personas")
-    def test02_persona(self):
-        self.driver.implicitly_wait(30)
-        driver = self.driver
-        driver.get(ruta)
-        f = Funciones(driver)
-        fe = Funexcel(driver)
-        f.tiempo(2)
-        path = excel
-        hoja = "Hoja3"
-        rows = fe.getRowCount(path, hoja)
-        for r in range(ren, rows + 1):
-            user = fe.readData(path, "Hoja3", r, 1)
-            passw = fe.readData(path, "Hoja3", r, 9)
-            # Seccion Personal
-            nom = str(fe.readData(path, "Hoja3", r, 23))
-            ap = str(fe.readData(path, "Hoja3", r, 24))
-            am = str(fe.readData(path, "Hoja3", r, 25))
-            email = str(fe.readData(path, "Hoja3", r, 26))
-            puesto = str(fe.readData(path, "Hoja3", r, 27))
-            costo = str(fe.readData(path, "Hoja3", r, 28))
-            laboral = str(fe.readData(path, "Hoja3", r, 29))
-            telefono = str(fe.readData(path, "Hoja3", r, 14))
+            #admin de Rastros.
+            nom_tif=fe.readData(path, hoja, r, 4)
+            num_tif=fe.readData(path, hoja, r, 6)
+            rt = random.randint(1, 9)
+            correo="demo12"+str(rt)+"@gmail.com"
+            telefono="123456789"+ str(rt)
+            cp="0799"+str(rt)
+            calle=fe.readData(path, hoja, r, 11)
+            ne=fe.readData(path, hoja, r, 12)
+            ni=fe.readData(path, hoja, r, 12)
             sample_letters = 'ABCDFEGHIJKLOPQRTSRETUIO'
             sample = 'XFTRGERDFRESCDFTYUIOPKASDR'
-            rt = random.choice(sample_letters)
+            rt1 = random.choice(sample_letters)
             rt2 = random.choice(sample)
-            ra = random.randint(1, 9)
-            ra1 = random.randint(1, 9)
-            rfc = str(fe.readData(path, "Hoja3", r, 15))
-            rfcc = rfc + str(ra1) + rt + str(ra)
-            curp = str(fe.readData(path, "Hoja3", r, 16))
-            curpp = curp + rt + str(ra)
+            curp=str(rt1)+"ASE970124HDFHLR0"+str(rt)
+            dias1=random.randint(1, 3)
+            dias2=random.randint(4, 7)
 
-            # Login
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.texto("username", user)
-            f.texto("password", passw)
-            f.Click("login_iniciarBtn")
-            f.Click("sisiaMenu_menu_621")
-            f.Click("sisiaMenu_subMenu_622")
 
-            # Sección personal
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.Click_oculto("tab_personal")
-            self.driver.implicitly_wait(10)
-            f.tiempo(5)
-            f.texto("personal_nombre", nom)
-            f.texto("personal_apellidoPat", ap)
-            f.texto("personal_apellidoMat", am)
-            f.texto("personal_rfc", rfcc)
-            f.texto("personal_curp", curpp)
-            f.texto("personal_correo", email)
-            f.texto("personal_tel", telefono)
-            #f.scrolling(550)
-            #f.tiempo(1)
-            f.combo_index("personal_puesto", puesto)
-            f.combo_index("personal_ubicLab", laboral)
-            f.texto("personal_costMes", costo)
-            f.Click("personal_agregarBtn")
-            driver.implicitly_wait(8)
-            f.tiempo(8)
-            v = f.existe_try("personal_modalOK")
-            if (v == "Existe"):
-                f.Click("personal_modalOK")
-                f.tiempo(1)
-                f.Click("personal_saveBtn")
-                self.driver.implicitly_wait(5)
-                f.tiempo(5)
-                f.Click("infUsuari_logout")
-                f.tiempo(1)
+            f.texto_xpath("//input[@placeholder='Nombre del TIF o Rázon sociala']", nom_tif, tg)
+            f.texto_xpath("//input[@placeholder='No. TIF']", num_tif, tg)
+            f.texto_xpath("//input[@placeholder='Teléfono']", telefono, tg)
+            f.texto_xpath("//input[@placeholder='Correo electrónico']",correo, tg)
+            f.combo_index_xpath("//select[@formcontrolname='entidad']",rt+1,1)
+            f.combo_index_xpath("//select[@formcontrolname='municipio']",rt+2,1)
+            f.tiempo(4)
+            f.combo_index_xpath("//select[@formcontrolname='localidad']", rt , 1)
+            f.texto_xpath("//input[contains(@formcontrolname,'cp')]",cp,tg)
+            f.texto_xpath("//input[contains(@formcontrolname,'calle')]",calle,tg)
+            f.texto_xpath("//input[contains(@formcontrolname,'exterior')]",ne,tg)
+            f.texto_xpath("//input[contains(@formcontrolname,'interior')]",ni,tg)
 
-            print("Valor de R: " + str(r))
+            #Primer curp
+            f.texto_xpath("//input[@formcontrolname='curp']",curp,2)
+            f.Click_xpath("(//span[@class='glyphicon glyphicon-search'])[2]",1)
+            nomM = fe.readData(path, hoja, r, 38)
+            apM = fe.readData(path, hoja, r, 39)
+            amM = fe.readData(path, hoja, r, 40)
+            val_curp1=f.existe_try_xpath("(//div[contains(.,'×La estructura de la CURP es incorrecta.')])[4]",1)
+            #validando error del curp
+            while val_curp1 == "Existe":
+                rt2= random.randint(3, 7)
+                curp = str(rt1) + str(rt2) + "SE970123HDFLLR0" + str(rt2)
+                f.texto_xpath("//input[@formcontrolname='curp']", curp, 2)
+                f.Click_xpath("(//span[@class='glyphicon glyphicon-search'])[2]", 1)
+
+            #si no esta registrado
+            cur1 = f.existe_try_xpath("(//div[contains(.,'×La CURP no se encontró, capture la información de la persona.')])[4]", 1)
+            if cur1 == "Existe":
+                f.texto_xpath("//input[@formcontrolname='nombre']", nomM, 1)
+                f.texto_xpath("//input[@formcontrolname='paterno']", apM, 1)
+                f.texto_xpath("//input[@formcontrolname='materno']", amM, 1)
+           
+
+
+
+            f.combo_index_xpath("/html/body/app-root/div/app-catalogos-principal/app-cat-rastros/div[2]/div/div/div[3]/div[24]/div/select",1,tg)
+            f.combo_index_xpath("/html/body/app-root/div/app-catalogos-principal/app-cat-rastros/div[2]/div/div/div[3]/div[24]/div/select",2,tg)
+            f.combo_index_xpath("/html/body/app-root/div/app-catalogos-principal/app-cat-rastros/div[2]/div/div/div[3]/div[24]/div/select",3,tg)
+            f.Click_xpath("(//button[contains(.,'Agregar')])[1]",1)
+
+
+
+
+
+            #Horarios
+            #f.Click_xpath("(//input[contains(@type,'checkbox')])['str(dias1)']",3)
+            #f.Click_xpath("(//input[contains(@type,'checkbox')])['str(dias2)']",3)
+
+
+            #Medico
+            nomM = fe.readData(path, hoja, r, 38)
+            apM = fe.readData(path, hoja, r, 39)
+            amM = fe.readData(path, hoja, r, 40)
+            curp2 = str(rt1) + str(rt2) + "ME970123HDFRHR0" + str(rt)
+            f.texto_xpath("//input[contains(@formcontrolname,'curpM')]", curp2, tg )
+            f.Click_xpath("(//span[contains(@class,'glyphicon glyphicon-search')])[4]",1)
+            val_curp2 = f.existe_try_xpath("(//div[contains(.,'×La estructura de la CURP es incorrecta.')])[4]", 1)
+            print("Segund curp: " + val_curp2)
+            # validando error del curp
+            while val_curp2 == "Existe":
+                rt2 = random.randint(3, 7)
+                curp2 = str(rt1)  + "ISE970124HDFLLR0" + str(rt2)
+                f.texto_xpath("//input[contains(@formcontrolname,'curpM')]", curp2, tg)
+                f.Click_xpath("(//span[contains(@class,'glyphicon glyphicon-search')])[4]", 1)
+
+
+            men=f.existe_try_xpath("/html/body/app-root/div/encabezado-sipvi/div[2]/div[3]/app-mensajes-globales/div",3)
+            print("Valor de men: "+ men)
+            f.tiempo(2)
+            if men == "Existe":
+                f.texto_xpath("//input[contains(@formcontrolname,'curpM')]", curp2, tg)
+                f.texto_xpath("//input[@formcontrolname='nombreM']",nomM+rt2, tg)
+                f.texto_xpath("//input[@formcontrolname='paternoM']",apM+rt2, tg)
+                f.texto_xpath("//input[contains(@formcontrolname,'maternoM')]",amM+rt2, tg)
+
+
             if (r == casos):
                 break
-
-   
-            '''
-
-
 
 
 

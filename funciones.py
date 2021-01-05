@@ -209,15 +209,15 @@ class Funciones():
         #self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//Check" + str(r) + ".png")
         return ct
 
-    def combo_index_xpath(self, xpath, index):
+    def combo_index_xpath(self, xpath, index, tiempo):
         t = self.driver.find_element_by_xpath(xpath)
         actions = ActionChains(self.driver)
         actions.move_to_element(t).perform()
         self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
-        time.sleep(1)
+        time.sleep(tiempo)
         ct = Select(self.driver.find_element_by_xpath(xpath))
         ct.select_by_index(index)
-        time.sleep(2)
+        time.sleep(tiempo)
         # self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//Check" + str(r) + ".png")
         return ct
 
@@ -274,7 +274,7 @@ class Funciones():
     def tab(self, xpath):
         self.driver.find_element_by_xpath(xpath).send_keys(Keys.TAB)
 
-    def existe(self,xpath):
+    def existe_xpath(self,xpath):
         isEnabled= self.driver.find_element_by_xpath(xpath)
         if(isEnabled):
             val="Ok"
@@ -290,12 +290,15 @@ class Funciones():
             val="Falso"
         return val
 
-    def existe_try_xpath(self,xpath):
+    def existe_try_xpath(self,xpath, tiempo):
         try:
             self.driver.find_element_by_xpath(xpath)
             v="Existe"
+            print("Encontro: " + xpath)
+            time.sleep(tiempo)
         except NoSuchElementException:
             v="Falso"
+            time.sleep(tiempo)
         return v
 
     def existe_try(self, id):
