@@ -36,12 +36,12 @@ class Funciones():
         #self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//texto" + str(r) + ".png")
         return t
 
-    def texto(self, id, texto):
+    def texto(self, id, texto, tiempo):
         t = self.driver.find_element_by_id(id)
         actions = ActionChains(self.driver)
         actions.move_to_element(t).perform()
         self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
-        time.sleep(.5)
+        time.sleep(tiempo)
         t = self.driver.find_element_by_id(id).clear()
 
         t = self.driver.find_element_by_id(id).send_keys(texto)
@@ -70,16 +70,15 @@ class Funciones():
         except NoSuchElementException:
             print("Boton Fallo: " + str(xpath))
 
-    def Click(self, id):
+    def Click(self, id, tiempo):
         e = self.driver.find_element_by_id(id)
         actions = ActionChains(self.driver)
         actions.move_to_element(e).perform()
         self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
-        time.sleep(.5)
+        time.sleep(tiempo)
         print("Boton nom: "+ str(id))
-        time.sleep(.5)
+        time.sleep(tiempo)
         elemento = WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.ID, id)))
-        time.sleep(.5)
         elemento = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID, id)))
         #elemento = WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.XPATH, xpath)))
         try:
@@ -301,6 +300,28 @@ class Funciones():
             time.sleep(tiempo)
         return v
 
+    def existe_try_css(self,css, tiempo):
+        try:
+            self.driver.find_element_by_class_name(css)
+            v="Existe"
+            print("Encontro: " + css)
+            time.sleep(tiempo)
+        except NoSuchElementException:
+            v="Falso"
+            time.sleep(tiempo)
+        return v
+
+    def existe_try_css2(self,css, tiempo):
+        try:
+            self.driver.find_element_by_class_name(css)
+            v="Encontrado"
+            print("Encontro: " + css)
+            time.sleep(tiempo)
+        except NoSuchElementException:
+            v="Falso"
+            time.sleep(tiempo)
+        return v
+
     def existe_try(self, id):
         try:
             self.driver.find_element_by_id(id)
@@ -309,13 +330,7 @@ class Funciones():
             v = "Falso"
         return v
 
-    def existe_try_css(self, css):
-        try:
-            self.driver.find_element_by_css_selector(css)
-            v = "Existe"
-        except NoSuchElementException:
-            v = "Falso"
-        return v
+
 
 
     def elemento_enter(self,xpath):

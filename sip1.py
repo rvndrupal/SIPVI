@@ -92,8 +92,8 @@ class Sisia(unittest.TestCase):
             # Login
             self.driver.implicitly_wait(5)
             f.tiempo(2)
-            f.texto_xpath("//input[contains(@id,'usuario')]", user , t_login)
-            f.texto_xpath("//input[contains(@id,'contrasenia')]", passw , t_login)
+            f.texto("usuario", user , t_login)
+            f.texto("contrasenia", passw , t_login)
             f.Click_xpath("//button[@type='submit']", t_login)
 
             #Catalogo
@@ -127,7 +127,7 @@ class Sisia(unittest.TestCase):
             dias1=random.randint(1, 3)
             dias2=random.randint(4, 7)
 
-
+            '''
             f.texto_xpath("//input[@placeholder='Nombre del TIF o Rázon sociala']", nom_tif, tg)
             f.texto_xpath("//input[@placeholder='No. TIF']", num_tif, tg)
             f.texto_xpath("//input[@placeholder='Teléfono']", telefono, tg)
@@ -178,32 +178,39 @@ class Sisia(unittest.TestCase):
             #f.Click_xpath("(//input[contains(@type,'checkbox')])['str(dias1)']",3)
             #f.Click_xpath("(//input[contains(@type,'checkbox')])['str(dias2)']",3)
 
+            '''
+
 
             #Medico
             nomM = fe.readData(path, hoja, r, 38)
             apM = fe.readData(path, hoja, r, 39)
             amM = fe.readData(path, hoja, r, 40)
-            curp2 = str(rt1) + str(rt2) + "ME970123HDFRHR0" + str(rt)
+            curp2 = str(rt1) + "ISE970124HDFLLR0" + str(rt1)
             f.texto_xpath("//input[contains(@formcontrolname,'curpM')]", curp2, tg )
             f.Click_xpath("(//span[contains(@class,'glyphicon glyphicon-search')])[4]",1)
-            val_curp2 = f.existe_try_xpath("(//div[contains(.,'×La estructura de la CURP es incorrecta.')])[4]", 1)
-            print("Segund curp: " + val_curp2)
+            f.tiempo(1)
+
+            #Fallo el curp
+            val_curp2 = f.existe_try_css("alert-danger", 1)
+
+
             # validando error del curp
             while val_curp2 == "Existe":
+                f.tiempo(20)
                 rt2 = random.randint(3, 7)
                 curp2 = str(rt1)  + "ISE970124HDFLLR0" + str(rt2)
                 f.texto_xpath("//input[contains(@formcontrolname,'curpM')]", curp2, tg)
                 f.Click_xpath("(//span[contains(@class,'glyphicon glyphicon-search')])[4]", 1)
 
 
-            men=f.existe_try_xpath("/html/body/app-root/div/encabezado-sipvi/div[2]/div[3]/app-mensajes-globales/div",3)
-            print("Valor de men: "+ men)
-            f.tiempo(2)
-            if men == "Existe":
-                f.texto_xpath("//input[contains(@formcontrolname,'curpM')]", curp2, tg)
-                f.texto_xpath("//input[@formcontrolname='nombreM']",nomM+rt2, tg)
-                f.texto_xpath("//input[@formcontrolname='paternoM']",apM+rt2, tg)
-                f.texto_xpath("//input[contains(@formcontrolname,'maternoM')]",amM+rt2, tg)
+
+            # insertar datos
+            Curp_error = f.existe_try_css2("alert-warning", 1)
+            if  Curp_error == "Encontrado":
+                #f.texto_xpath("//input[contains(@formcontrolname,'curpM')]", curp2, tg)
+                f.texto_xpath("//input[@formcontrolname='nombreM']", nomM + rt2, tg)
+                f.texto_xpath("//input[@formcontrolname='paternoM']", apM + rt2, tg)
+                f.texto_xpath("//input[contains(@formcontrolname,'maternoM')]", amM + rt2, tg)
 
 
             if (r == casos):
