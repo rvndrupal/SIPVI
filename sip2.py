@@ -69,7 +69,7 @@ class Sisia(unittest.TestCase):
 
     # @unittest.skip("Para pruebas de datos")
     # Primero
-    def test01_rastros(self):
+    def test01_rastros2(self):
         self.driver.implicitly_wait(20)
         driver = self.driver
         f = Funciones(driver)
@@ -78,7 +78,7 @@ class Sisia(unittest.TestCase):
         driver.get(ruta)
 
         path = excel
-        hoja = "Rastros(TIF)"
+        hoja = "Rastros(Rastro)"
         rows = fe.getRowCount(path, hoja)
         for r in range(ren, rows):
             user = fe.readData(path, hoja, r, 1)
@@ -105,12 +105,12 @@ class Sisia(unittest.TestCase):
             f.Click("id_btn_nuevo",.5)
 
             #tipo de Registro TIF
-            f.combo_texto("id_tipo_rastro", "Establecimiento TIF",.5)
+            f.combo_texto("id_tipo_rastro", "Rastro",.5)
             f.Click("id_btn_siguiente", .5)
 
 
             #admin de Rastros.
-            nom_tif=fe.readData(path, hoja, r, 4)
+            nom_ras=fe.readData(path, hoja, r, 4)
             num_tif=fe.readData(path, hoja, r, 6)
             rt = random.randint(1, 9)
             correo="demo12"+str(rt)+"@gmail.com"
@@ -127,9 +127,9 @@ class Sisia(unittest.TestCase):
             dias1=random.randint(1, 3)
             dias2=random.randint(4, 7)
 
-            #Representante Legal
-            f.texto("id_razon_social_tif", nom_tif, tg)
-            f.texto("id_ntif",num_tif, tg)
+            #Datos Generales
+            f.combo_index("id_tipo_matanza",rt,3)
+            f.texto("id_rastro_matanza", nom_ras, tg)
             f.texto("id_telefono", telefono, tg)
             f.texto("id_correo_electronico",correo, tg)
             f.combo_index("id_entidad",rt+1,1)
@@ -163,7 +163,7 @@ class Sisia(unittest.TestCase):
                 f.texto("id_nombre", nomM, 1)
                 f.texto("id_paterno", apM, 1)
                 f.texto("id_materno", amM, 1)
-
+           
 
             #Combox, Especies
             f.combo_index_id("id_especies_disponibles",1,tg)

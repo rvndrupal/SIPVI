@@ -36,6 +36,19 @@ class Funciones():
         #self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//texto" + str(r) + ".png")
         return t
 
+    def texto_xpath2(self, xpath, texto, tiempo):
+        ##r = random.randint(1, 1000)
+        t = self.driver.find_element_by_xpath(xpath)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(t).perform()
+        self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
+        time.sleep(tiempo)
+        #t = self.driver.find_element_by_xpath(xpath).clear()
+        t = self.driver.find_element_by_xpath(xpath).send_keys(texto)
+        print("Campo: "+str(xpath)+"--> Dato: "+str(texto))
+        #self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//texto" + str(r) + ".png")
+        return t
+
     def texto(self, id, texto, tiempo):
         t = self.driver.find_element_by_id(id)
         actions = ActionChains(self.driver)
@@ -47,6 +60,18 @@ class Funciones():
         t = self.driver.find_element_by_id(id).send_keys(texto)
         print("Campo: "+str(id)+"--> Dato: "+str(texto))
         #self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//texto" + str(r) + ".png")
+        return t
+
+    def texto_css(self, css, texto, tiempo):
+        t = self.driver.find_element_by_class_name(css)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(t).perform()
+        self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
+        time.sleep(tiempo)
+        t = self.driver.find_element_by_class_name(css).clear()
+
+        t = self.driver.find_element_by_class_name(css).send_keys(texto)
+        print("Campo: " + str(id) + "--> Dato: " + str(texto))
         return t
     
 
@@ -69,6 +94,15 @@ class Funciones():
             return e
         except NoSuchElementException:
             print("Boton Fallo: " + str(xpath))
+            return e
+
+    def Focus(self, id, tiempo):
+        e = self.driver.find_element_by_id(id)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(e).perform()
+        self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
+        time.sleep(tiempo)
+        return e
 
     def Click(self, id, tiempo):
         e = self.driver.find_element_by_id(id)
@@ -115,16 +149,16 @@ class Funciones():
 
 
     #Click Oculto bueno
-    def Click_oculto(self, id):
+    def Click_oculto(self, id, tiempo):
         e = self.driver.find_element_by_id(id)
         actions = ActionChains(self.driver)
         actions.move_to_element(e).perform()
         self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
-        time.sleep(.5)
+        time.sleep(tiempo)
         print("Boton nom: "+ str(id))
-        time.sleep(1)
+        time.sleep(tiempo)
         elemento = WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.ID, id)))
-        time.sleep(1)
+        time.sleep(tiempo)
         elemento = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID, id)))
         #elemento = WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.XPATH, xpath)))
         try:
@@ -144,16 +178,24 @@ class Funciones():
         e = self.driver.find_element_by_css_selector(css).click()
         return e
 
-    def Enter(self, xpath):
-        '''
+    def Enter_xpath(self, xpath, tiempo):
         ct = self.driver.find_element_by_xpath(xpath)
         actions = ActionChains(self.driver)
         actions.move_to_element(ct).perform()
-        time.sleep(1)
-        '''
+        time.sleep(tiempo)
         ct = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
         cte = self.driver.find_element_by_xpath(xpath).send_keys(Keys.ENTER)
         return ct
+
+    def Enter(self, id, tiempo):
+        ct = self.driver.find_element_by_id(id)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(ct).perform()
+        time.sleep(tiempo)
+        ct = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, id)))
+        cte = self.driver.find_element_by_xpath(id).send_keys(Keys.ENTER)
+        return ct
+
 
     def Click_menus(self, xpath):
         e = self.driver.find_element_by_xpath(xpath)
@@ -215,6 +257,18 @@ class Funciones():
         self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
         time.sleep(tiempo)
         ct = Select(self.driver.find_element_by_xpath(xpath))
+        ct.select_by_index(index)
+        time.sleep(tiempo)
+        # self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//Check" + str(r) + ".png")
+        return ct
+
+    def combo_index_id(self, id, index, tiempo):
+        t = self.driver.find_element_by_id(id)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(t).perform()
+        self.driver.execute_script("window.scrollTo(0, window.scrollY + " + str(25) + ")")
+        time.sleep(tiempo)
+        ct = Select(self.driver.find_element_by_id(id))
         ct.select_by_index(index)
         time.sleep(tiempo)
         # self.driver.save_screenshot("C://SELENIUM//Page_objects//IMAGENES//Check" + str(r) + ".png")
@@ -300,6 +354,17 @@ class Funciones():
             time.sleep(tiempo)
         return v
 
+    def existe_try_id(self,id, tiempo):
+        try:
+            self.driver.find_element_by_id(id)
+            v="Existe"
+            print("Encontro: " + id)
+            time.sleep(tiempo)
+        except NoSuchElementException:
+            v="Falso"
+            time.sleep(tiempo)
+        return v
+
     def existe_try_css(self,css, tiempo):
         try:
             self.driver.find_element_by_class_name(css)
@@ -361,8 +426,14 @@ class Funciones():
             val="Inactivo"
         return val
 
-    def limpiar(self,xpath):
+    def limpiar_xpath(self,xpath,tiempo):
         c=self.driver.find_element_by_xpath(xpath).clear()
+        time.sleep(tiempo)
+        return c
+
+    def limpiar(self,id,tiempo):
+        c=self.driver.find_element_by_id(id).clear()
+        time.sleep(tiempo)
         return c
 
     def tamano(self,css):
