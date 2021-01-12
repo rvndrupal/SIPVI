@@ -4,6 +4,9 @@
     <list default="true" id="dcabe3c4-01dc-49f8-a469-39615a044c15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Documentos/Datos.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentos/Datos.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report1.html" beforeDir="false" afterPath="$PROJECT_DIR$/report1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report2.html" beforeDir="false" afterPath="$PROJECT_DIR$/report2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sip1.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +17,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1mOfgSrfNXtisdRHkaHBJ9gsKiW" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -30,8 +35,8 @@
       <recent name="C:\SIPVI" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for sip4.Sisia.test01_Grupo_mercancia">
-    <configuration name="pytest for sip2.Sisia.test01_rastros" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for sipvi.Sisia.test04_Sitio_inspeccion">
+    <configuration name="pytest for sipvi.Sisia.test01_tif" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SIPVI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -42,11 +47,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sip2.Sisia.test01_rastros&quot;" />
+      <option name="_new_target" value="&quot;sipvi.Sisia.test01_tif&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sip2.Sisia.test01_rastros2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for sipvi.Sisia.test02_rastros" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SIPVI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -57,11 +62,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sip2.Sisia.test01_rastros2&quot;" />
+      <option name="_new_target" value="&quot;sipvi.Sisia.test02_rastros&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sip3.Sisia.test01_Grupo_mercancia" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for sipvi.Sisia.test03_Grupo_mercancia" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SIPVI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -72,11 +77,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sip3.Sisia.test01_Grupo_mercancia&quot;" />
+      <option name="_new_target" value="&quot;sipvi.Sisia.test03_Grupo_mercancia&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sip3.Sisia.test01_rastros2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for sipvi.Sisia.test04_Grupo_mercancia" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SIPVI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -87,11 +92,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sip3.Sisia.test01_rastros2&quot;" />
+      <option name="_new_target" value="&quot;sipvi.Sisia.test04_Grupo_mercancia&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sip4.Sisia.test01_Grupo_mercancia" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for sipvi.Sisia.test04_Sitio_inspeccion" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SIPVI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -102,17 +107,17 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sip4.Sisia.test01_Grupo_mercancia&quot;" />
+      <option name="_new_target" value="&quot;sipvi.Sisia.test04_Sitio_inspeccion&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for sip4.Sisia.test01_Grupo_mercancia" />
-        <item itemvalue="Python tests.pytest for sip3.Sisia.test01_Grupo_mercancia" />
-        <item itemvalue="Python tests.pytest for sip3.Sisia.test01_rastros2" />
-        <item itemvalue="Python tests.pytest for sip2.Sisia.test01_rastros2" />
-        <item itemvalue="Python tests.pytest for sip2.Sisia.test01_rastros" />
+        <item itemvalue="Python tests.pytest for sipvi.Sisia.test04_Sitio_inspeccion" />
+        <item itemvalue="Python tests.pytest for sipvi.Sisia.test04_Grupo_mercancia" />
+        <item itemvalue="Python tests.pytest for sipvi.Sisia.test03_Grupo_mercancia" />
+        <item itemvalue="Python tests.pytest for sipvi.Sisia.test02_rastros" />
+        <item itemvalue="Python tests.pytest for sipvi.Sisia.test01_tif" />
       </list>
     </recent_temporary>
   </component>
@@ -130,26 +135,26 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="283" key="GridCell.Tab.0.bottom" timestamp="1609979365858">
+    <state width="1899" height="283" key="GridCell.Tab.0.bottom" timestamp="1610486606803">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1515" height="282" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1609791549747" />
-    <state width="1899" height="283" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609979365858" />
-    <state width="1899" height="283" key="GridCell.Tab.0.center" timestamp="1609979365858">
+    <state width="1899" height="283" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610486606803" />
+    <state width="1899" height="283" key="GridCell.Tab.0.center" timestamp="1610486606803">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1515" height="282" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1609791549746" />
-    <state width="1899" height="283" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609979365858" />
-    <state width="1899" height="283" key="GridCell.Tab.0.left" timestamp="1609979365858">
+    <state width="1899" height="283" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610486606803" />
+    <state width="1899" height="283" key="GridCell.Tab.0.left" timestamp="1610486606803">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1515" height="282" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1609791549746" />
-    <state width="1899" height="283" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609979365858" />
-    <state width="1899" height="283" key="GridCell.Tab.0.right" timestamp="1609979365858">
+    <state width="1899" height="283" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610486606803" />
+    <state width="1899" height="283" key="GridCell.Tab.0.right" timestamp="1610486606803">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1515" height="282" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1609791549746" />
-    <state width="1899" height="283" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609979365858" />
+    <state width="1899" height="283" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610486606803" />
     <state x="2460" y="259" key="IDE.errors.dialog" timestamp="1609899527803">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

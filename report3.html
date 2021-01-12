@@ -404,8 +404,8 @@ function filter_table(elem) {
     not_found_message.hidden = !all_rows_hidden;
 }
 </script>
-    <h1>report2.html</h1>
-    <p>Report generated on 12-Jan-2021 at 13:14:58 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
+    <h1>report3.html</h1>
+    <p>Report generated on 12-Jan-2021 at 13:14:35 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -424,8 +424,8 @@ function filter_table(elem) {
         <td>Python</td>
         <td>3.8.5</td></tr></table>
     <h2>Summary</h2>
-    <p>4 tests ran in 430.88 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">4 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>4 tests ran in 391.51 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">3 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -436,11 +436,20 @@ function filter_table(elem) {
           <th>Links</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">sipvi.py::Sisia::test04_Grupo_mercancia</td>
+          <td class="col-duration">38.52</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;sipvi.Sisia testMethod=test04_Grupo_mercancia&gt;<br/><br/>    def test04_Grupo_mercancia(self):<br/>        self.driver.implicitly_wait(20)<br/>        driver = self.driver<br/>        f = Funciones(driver)<br/>        fe = Funexcel(driver)<br/>        f.tiempo(.3)<br/>        driver.get(ruta)<br/>    <br/>        path = excel<br/>        hoja = &quot;Sitio_inspeccion&quot;<br/>        rows = fe.getRowCount(path, hoja)<br/>        for r in range(ren, rows):<br/>            user = fe.readData(path, hoja, r, 1)<br/>            passw = fe.readData(path, hoja , r, 2)<br/>            gm = fe.readData(path, hoja, r, 3)<br/>            cm = fe.readData(path, hoja, r, 4)<br/>    <br/>            &#x27;&#x27;&#x27;<br/>            fecha = fe.readData(path, &quot;Hoja3&quot;, r, 12)<br/>            #fecha2 = datetime.now() + timedelta(days=fecha)<br/>            fecha2 = datetime.now()<br/>            fecha2 = fecha2.strftime(&#x27;%d/%m/%Y&#x27;)<br/>            &#x27;&#x27;&#x27;<br/>            # Login<br/>            self.driver.implicitly_wait(5)<br/>            f.tiempo(2)<br/>            f.texto(&quot;usuario&quot;, user , t_login)<br/>            f.texto(&quot;contrasenia&quot;, passw , t_login)<br/>            f.Click_xpath(&quot;//button[@type=&#x27;submit&#x27;]&quot;, t_login)<br/>    <br/>            #Catalogo<br/>            f.Click(&quot;id_menu_catalogos&quot;, 1)<br/>            f.Click(&quot;id_menu_cat_sitios_inspeccion&quot;, 1)<br/>    <br/>            #click Nuevo<br/>            f.tiempo(4)<br/>            f.Click(&quot;SitiosInspeccion__btn-nuevo&quot;,.5)<br/>    <br/>            #Administración de Inspección<br/>            ra1 = random.randint(1, 12)<br/>            ra2 = random.randint(1, 9)<br/>            ra3 = random.randint(6, 8)<br/>            ca = fe.readData(path, hoja, r, 3)<br/>            nom = fe.readData(path, hoja, r, 4)<br/>            tip = fe.readData(path, hoja, r, 5)<br/>            Dom = fe.readData(path, hoja, r, 6)<br/>            nk = fe.readData(path, hoja, r, 7)<br/>            Ejex = fe.readData(path, hoja, r, 18)<br/>            Ejex=str(Ejex)<br/>            Ejey = fe.readData(path, hoja, r, 19)<br/>            Ejey=str(Ejey)<br/>    <br/>    <br/>    <br/>    <br/>            #Fase 1<br/>            f.texto(&quot;claveAutorizacionForm&quot;, ca, .5)<br/>            f.texto(&quot;Nombre&quot;,nom, .3)<br/>            f.combo_index(&quot;tipoSitioInspeccionForm&quot;, tip, 2)<br/>            f.texto(&quot;domicilioCarretera&quot;,Dom, .3)<br/>            f.texto(&quot;numeroKm&quot;, nk, .2)<br/>            f.combo_index(&quot;estado&quot;, ra1, 1)<br/>&gt;           f.combo_index(&quot;municipio&quot;, ra2, 1)<br/><br/>sipvi.py:509: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>funciones.py:248: in combo_index<br/>    ct.select_by_index(index)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = &lt;selenium.webdriver.support.select.Select object at 0x000002BF50D09B80&gt;, index = 7<br/><br/>    def select_by_index(self, index):<br/>        &quot;&quot;&quot;Select the option at the given index. This is done by examing the &quot;index&quot; attribute of an<br/>           element, and not merely by counting.<br/>    <br/>           :Args:<br/>            - index - The option at this index will be selected<br/>    <br/>           throws NoSuchElementException If there is no option with specisied index in SELECT<br/>           &quot;&quot;&quot;<br/>        match = str(index)<br/>        for opt in self.options:<br/>            if opt.get_attribute(&quot;index&quot;) == match:<br/>                self._setSelected(opt)<br/>                return<br/>&gt;       raise NoSuchElementException(&quot;Could not locate element with index %d&quot; % index)<br/><span class="error">E       selenium.common.exceptions.NoSuchElementException: Message: Could not locate element with index 7</span><br/><br/>c:\users\rodrigo.villanueva.c\anaconda3\lib\site-packages\selenium\webdriver\support\select.py:103: NoSuchElementException<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">sipvi.py::Sisia::test01_tif</td>
-          <td class="col-duration">134.98</td>
+          <td class="col-duration">136.45</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -449,7 +458,7 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">sipvi.py::Sisia::test02_rastros</td>
-          <td class="col-duration">138.49</td>
+          <td class="col-duration">138.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -458,16 +467,7 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">sipvi.py::Sisia::test03_Grupo_mercancia</td>
-          <td class="col-duration">67.12</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">sipvi.py::Sisia::test04_Grupo_mercancia</td>
-          <td class="col-duration">79.55</td>
+          <td class="col-duration">67.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
