@@ -27,11 +27,12 @@ import string
 
 
 
-ren =14
-casos=14
+ren =27
+casos=27
 #ruta="https://prod.senasica.gob.mx/sisia/login"
 excel="C://SIPVI//Documentos//Datos.xlsx"
 ruta="http://10.16.3.29:8007/login"
+#Presidencia
 t_login=1
 tg=.2
 
@@ -85,14 +86,14 @@ class Sisia(unittest.TestCase):
             f.tiempo(2)
             f.texto("usuario", user , t_login)
             f.texto("contrasenia", passw , t_login)
-            f.Click_xpath("//button[@type='submit']", t_login)
+            f.Click("id_ingresar_sipvi", t_login)
 
             #Catalogo
             f.Click("id_menu_catalogos", 1)
             f.Click("id_menu_cat_rastros", 1)
 
             #click Nuevo
-            f.tiempo(15)
+            f.tiempo(35)
             f.Click("id_btn_nuevo",.5)
 
             #tipo de Registro TIF
@@ -221,7 +222,7 @@ class Sisia(unittest.TestCase):
             #Guardar
             f.Click("id_btn_guardado",2)
             #Salir
-            f.tiempo(10)
+            f.tiempo(40)
             f.Click("id_salir_sipvi", .1)
             print("Paso la prueba 1")
             if (r == casos):
@@ -252,14 +253,14 @@ class Sisia(unittest.TestCase):
             f.tiempo(2)
             f.texto("usuario", user, t_login)
             f.texto("contrasenia", passw, t_login)
-            f.Click_xpath("//button[@type='submit']", t_login)
+            f.Click("id_ingresar_sipvi", t_login)
 
             # Catalogo
             f.Click("id_menu_catalogos", 1)
             f.Click("id_menu_cat_rastros", 1)
 
             # click Nuevo
-            f.tiempo(15)
+            f.tiempo(25)
             f.Click("id_btn_nuevo", .5)
 
             # tipo de Registro TIF
@@ -413,14 +414,14 @@ class Sisia(unittest.TestCase):
             f.tiempo(2)
             f.texto("usuario", user, t_login)
             f.texto("contrasenia", passw, t_login)
-            f.Click_xpath("//button[@type='submit']", t_login)
+            f.Click("id_ingresar_sipvi", t_login)
 
             # Catalogo
             f.Click("id_menu_catalogos", 1)
             f.Click("id_menu_cat_grupo_mercancia", 1)
 
             # click Nuevo
-            f.tiempo(4)
+            f.tiempo(10)
             f.Click("id_nuevo_gm", .5)
 
             # Administración de Grupo
@@ -457,6 +458,7 @@ class Sisia(unittest.TestCase):
             if (r == casos):
                 break
 
+
     def test04_Sitio_inspeccion(self):
         self.driver.implicitly_wait(20)
         driver = self.driver
@@ -474,25 +476,20 @@ class Sisia(unittest.TestCase):
             gm = fe.readData(path, hoja, r, 3)
             cm = fe.readData(path, hoja, r, 4)
 
-            '''
-            fecha = fe.readData(path, "Hoja3", r, 12)
-            #fecha2 = datetime.now() + timedelta(days=fecha)
-            fecha2 = datetime.now()
-            fecha2 = fecha2.strftime('%d/%m/%Y')                    
-            '''
+          
             # Login
             self.driver.implicitly_wait(5)
             f.tiempo(2)
             f.texto("usuario", user , t_login)
             f.texto("contrasenia", passw , t_login)
-            f.Click_xpath("//button[@type='submit']", t_login)
+            f.Click("id_ingresar_sipvi", t_login)
 
             #Catalogo
             f.Click("id_menu_catalogos", 1)
             f.Click("id_menu_cat_sitios_inspeccion", 1)
 
             #click Nuevo
-            f.tiempo(4)
+            f.tiempo(10)
             f.Click("SitiosInspeccion__btn-nuevo",.5)
 
             #Administración de Inspección
@@ -561,7 +558,7 @@ class Sisia(unittest.TestCase):
             # Guardar
             f.Click("sitioInspeccion__Nuevo__btn-guardar", 1)
             # Salir
-            f.tiempo(40)
+            f.tiempo(400)
             f.Click("id_salir_sipvi", .1)
             print("Paso la prueba 4")
 
